@@ -12,3 +12,9 @@
 *.swp
 *.swo
 src/*.o
+emsdk/
+raylib/
+raylib.zip
+nairobi_streets.html
+nairobi_streets.js
+nairobi_streets.wasm
