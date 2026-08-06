@@ -1,0 +1,14 @@
+*.o
+*.obj
+*.exe
+*.out
+*.pdb
+*.log
+.DS_Store
+*.tmp
+*.cache
+.vscode/
+.idea/
+*.swp
+*.swo
+src/*.o
