@@ -23,8 +23,9 @@ jobs:
       
       - name: Build Web Version
         run: |
-          source $EMSDK/emsdk_env.sh
+          source "$EMSDK/emsdk_env.sh"
           make web
+        shell: bash
       
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
