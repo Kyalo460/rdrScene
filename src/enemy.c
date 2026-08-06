@@ -4,6 +4,10 @@
 #include <string.h>
 #include <time.h>
 
+static void CivilianAI(Entity* e, Entity* player, float dist, float dt);
+static void GangAI(Game* game, Entity* e, Entity* player, float dist, float dt);
+static void PoliceAI(Game* game, Entity* e, Entity* player, float dist, float dt);
+
 void EnemyInit(Game* game) {
     game->entity_count = 0;
     game->worldHeat = 0;
@@ -32,9 +36,9 @@ void EnemyAI(Game* game, Entity* e, float dt) {
         case FACTION_CIVILIAN:
             CivilianAI(e, player, dist, dt);
             break;
-        case FACTION_MUNGIKI:
-        case FACTION_TALIBAN:
-        case FACTION_JERUSALEM:
+        case FACTION_GANG_MUNGIKI:
+        case FACTION_GANG_TALIBAN:
+        case FACTION_GANG_JERUSALEM:
             GangAI(game, e, player, dist, dt);
             break;
         case FACTION_POLICE:
@@ -125,9 +129,9 @@ void PoliceAI(Game* game, Entity* e, Entity* player, float dist, float dt) {
     int heat = game->worldHeat;
 
     if (heat > 50 || dist < 300.0f) {
-        int target_id = EntityFindNearestTarget(game, e, FACTION_MUNGIKI, 500.0f);
-        if (target_id < 0) target_id = EntityFindNearestTarget(game, e, FACTION_TALIBAN, 500.0f);
-        if (target_id < 0) target_id = EntityFindNearestTarget(game, e, FACTION_JERUSALEM, 500.0f);
+        int target_id = EntityFindNearestTarget(game, e, FACTION_GANG_MUNGIKI, 500.0f);
+        if (target_id < 0) target_id = EntityFindNearestTarget(game, e, FACTION_GANG_TALIBAN, 500.0f);
+        if (target_id < 0) target_id = EntityFindNearestTarget(game, e, FACTION_GANG_JERUSALEM, 500.0f);
         if (target_id < 0 && player->heat > 0) target_id = EntityFindNearestTarget(game, e, FACTION_PLAYER, 500.0f);
 
         if (target_id >= 0) {
@@ -192,9 +196,9 @@ void EnemySpawnWave(Game* game, int wave) {
         Faction faction;
         int r = rand() % 100;
         if (r < 40) faction = FACTION_CIVILIAN;
-        else if (r < 60) faction = FACTION_MUNGIKI;
-        else if (r < 80) faction = FACTION_TALIBAN;
-        else faction = FACTION_JERUSALEM;
+        else if (r < 60) faction = FACTION_GANG_MUNGIKI;
+        else if (r < 80) faction = FACTION_GANG_TALIBAN;
+        else faction = FACTION_GANG_JERUSALEM;
 
         Entity* e = EntityCreate(game, ENTITY_CIVILIAN, x, y, 0.0f);
         if (e) {
@@ -211,7 +215,7 @@ void EnemySpawnWave(Game* game, int wave) {
         float y = WORLD_HEIGHT / 2 + (rand() % 400 - 200);
         Entity* boss = EntityCreate(game, ENTITY_BOSS, x, y, 0.0f);
         if (boss) {
-            boss->faction = FACTION_MUNGIKI;
+            boss->faction = FACTION_GANG_MUNGIKI;
             boss->health = 500 + wave * 50;
             boss->max_health = boss->health;
             boss->weapon = WEAPON_AK47;
@@ -225,9 +229,9 @@ void EnemySpawnWave(Game* game, int wave) {
 Entity* EntityCreateEnemy(Game* game, Faction faction, float x, float y) {
     EntityType type = ENTITY_CIVILIAN;
     switch (faction) {
-        case FACTION_MUNGIKI:
-        case FACTION_TALIBAN:
-        case FACTION_JERUSALEM:
+        case FACTION_GANG_MUNGIKI:
+        case FACTION_GANG_TALIBAN:
+        case FACTION_GANG_JERUSALEM:
             type = ENTITY_GANG_MUNGIKI;
             break;
         case FACTION_POLICE:

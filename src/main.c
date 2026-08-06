@@ -435,12 +435,6 @@ bool EntityCheckCollision(Entity* a, Entity* b) {
             a->y + a->height > b->y);
 }
 
-float EntityDistance(Entity* a, Entity* b) {
-    float dx = a->x - b->x;
-    float dy = a->y - b->y;
-    return sqrtf(dx * dx + dy * dy);
-}
-
 void EntityTakeDamage(Game* game, Entity* target, int damage, Entity* attacker) {
     (void)game;
     if (!target || !target->active) return;

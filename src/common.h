@@ -410,7 +410,7 @@ void EnemySpawnWave(Game* game, int wave);
 Entity* EntityCreateEnemy(Game* game, Faction faction, float x, float y);
 void EntityMoveToward(Entity *e, float targetX, float targetY, float speed, float dt);
 void EntityAttack(Entity *attacker, Entity *target);
-int EntityFindNearestTarget(Entity *e, Faction targetFaction, float maxRange);
+int EntityFindNearestTarget(Game* game, Entity* e, Faction targetFaction, float maxRange);
 
 void MissionInit(void);
 void MissionUpdate(float dt);

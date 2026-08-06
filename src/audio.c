@@ -8,6 +8,39 @@ static Sound sounds[MAX_SOUNDS];
 static Music music[MAX_MUSIC];
 static int currentMusic = -1;
 
+static Music LoadMusicStreamFromWave(Wave wave) {
+    unsigned int dataSize = wave.frameCount * wave.channels * (wave.sampleSize / 8);
+    unsigned int fileSize = 36 + dataSize;
+    unsigned char *wavData = malloc(44 + dataSize);
+    if (!wavData) return (Music){0};
+
+    memcpy(wavData, "RIFF", 4);
+    memcpy(wavData + 4, &fileSize, 4);
+    memcpy(wavData + 8, "WAVE", 4);
+    memcpy(wavData + 12, "fmt ", 4);
+    unsigned int fmtSize = 16;
+    memcpy(wavData + 16, &fmtSize, 4);
+    unsigned short audioFormat = 1;
+    memcpy(wavData + 20, &audioFormat, 2);
+    unsigned short channels = wave.channels;
+    memcpy(wavData + 22, &channels, 2);
+    unsigned int sampleRate = wave.sampleRate;
+    memcpy(wavData + 24, &sampleRate, 4);
+    unsigned int byteRate = wave.sampleRate * wave.channels * (wave.sampleSize / 8);
+    memcpy(wavData + 28, &byteRate, 4);
+    unsigned short blockAlign = wave.channels * (wave.sampleSize / 8);
+    memcpy(wavData + 32, &blockAlign, 2);
+    unsigned short bitsPerSample = wave.sampleSize;
+    memcpy(wavData + 34, &bitsPerSample, 2);
+    memcpy(wavData + 36, "data", 4);
+    memcpy(wavData + 40, &dataSize, 4);
+    memcpy(wavData + 44, wave.data, dataSize);
+
+    Music m = LoadMusicStreamFromMemory(".wav", wavData, 44 + dataSize);
+    free(wavData);
+    return m;
+}
+
 static Wave GenerateSineWave(float frequency, float duration, float volume) {
     int sampleRate = 44100;
     int sampleCount = (int)(sampleRate * duration);

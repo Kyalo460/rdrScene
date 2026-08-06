@@ -228,7 +228,7 @@ DialogueRelation DialogueGetRelation(Entity* speaker, Entity* target, int player
         return RELATION_NEUTRAL;
     }
 
-    if (speaker->faction >= FACTION_MUNGIKI && speaker->faction <= FACTION_JERUSALEM) {
+    if (speaker->faction >= FACTION_GANG_MUNGIKI && speaker->faction <= FACTION_GANG_JERUSALEM) {
         if (target && target->faction == speaker->faction) return RELATION_RESPECTFUL;
         if (playerHeat > 80) return RELATION_FEARFUL;
         if (playerRespect > 200) return RELATION_RESPECTFUL;

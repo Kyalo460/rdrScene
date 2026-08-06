@@ -35,7 +35,7 @@ void UIInit(void) {
 
     Image panelImg = GenImageColor(300, 200, uiAssets.nairobiDark);
     ImageDrawRectangle(&panelImg, 0, 0, 300, 200, (Color){20, 20, 30, 230});
-    ImageDrawRectangleLines(&panelImg, 0, 0, 300, 200, 2, uiAssets.nairobiGold);
+    ImageDrawRectangleLines(&panelImg, (Rectangle){0, 0, 300, 200}, 2, uiAssets.nairobiGold);
     uiAssets.hudPanel = LoadTextureFromImage(panelImg);
     UnloadImage(panelImg);
 
@@ -49,7 +49,7 @@ void UIInit(void) {
         Color colors[7] = {uiAssets.nairobiGold, uiAssets.nairobiRed, uiAssets.nairobiBlue, 
                           uiAssets.nairobiYellow, ORANGE, PURPLE, GREEN};
         ImageDrawRectangle(&iconImg, 4, 4, 24, 24, colors[i]);
-        ImageDrawRectangleLines(&iconImg, 4, 4, 24, 24, 1, WHITE);
+        ImageDrawRectangleLines(&iconImg, (Rectangle){4, 4, 24, 24}, 1, WHITE);
         uiAssets.weaponIcons[i] = LoadTextureFromImage(iconImg);
         UnloadImage(iconImg);
     }
