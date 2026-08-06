@@ -16,7 +16,7 @@ SOURCES = $(SRC_DIR)/main.c \
 OBJECTS = $(SOURCES:.c=.o)
 
 EMCC = emcc
-EMFLAGS = -std=c99 -Wall -Wextra -O2 -I./src -Isrc -s USE_GLFW=3 -s ASYNCIFY -s TOTAL_MEMORY=67108864 -s FORCE_FILESYSTEM=1 -s EXPORTED_RUNTIME_METHODS=['ccall','cwrap'] -s EXPORTED_FUNCTIONS=['_main','_malloc','_free'] --shell-file shell.html
+EMFLAGS = -std=c99 -Wall -Wextra -O2 -I./src -Isrc -s USE_GLFW=3 -s USE_RAYLIB=1 -s ASYNCIFY -s TOTAL_MEMORY=67108864 -s FORCE_FILESYSTEM=1 -s EXPORTED_RUNTIME_METHODS=['ccall','cwrap'] -s EXPORTED_FUNCTIONS=['_main','_malloc','_free'] --shell-file shell.html
 WEB_TARGET = nairobi_streets.html
 
 all: $(TARGET)
