@@ -15,8 +15,18 @@ SOURCES = $(SRC_DIR)/main.c \
 
 OBJECTS = $(SOURCES:.c=.o)
 
+RAYLIB_SRC = /tmp/raylib-src/src
+RAYLIB_SOURCES = $(RAYLIB_SRC)/rcore.c \
+                 $(RAYLIB_SRC)/rshapes.c \
+                 $(RAYLIB_SRC)/rtextures.c \
+                 $(RAYLIB_SRC)/rtext.c \
+                 $(RAYLIB_SRC)/rmodels.c \
+                 $(RAYLIB_SRC)/raudio.c \
+                 $(RAYLIB_SRC)/utils.c \
+                 $(RAYLIB_SRC)/rglfw.c
+
 EMCC = emcc
-EMFLAGS = -std=c99 -Wall -Wextra -O2 -I./src -Isrc -s USE_GLFW=3 -s USE_RAYLIB=1 -s ASYNCIFY -s TOTAL_MEMORY=67108864 -s FORCE_FILESYSTEM=1 -s EXPORTED_RUNTIME_METHODS=['ccall','cwrap'] -s EXPORTED_FUNCTIONS=['_main','_malloc','_free'] --shell-file shell.html
+EMFLAGS = -std=c99 -Wall -Wextra -O2 -I./src -Isrc -I$(RAYLIB_SRC) -s USE_GLFW=3 -s ASYNCIFY -s TOTAL_MEMORY=67108864 -s FORCE_FILESYSTEM=1 -s EXPORTED_RUNTIME_METHODS=['ccall','cwrap'] -s EXPORTED_FUNCTIONS=['_main','_malloc','_free'] --shell-file shell.html
 WEB_TARGET = nairobi_streets.html
 
 all: $(TARGET)
@@ -38,7 +48,8 @@ debug: CFLAGS += -g -DDEBUG
 debug: $(TARGET)
 
 web: $(SOURCES)
-	$(EMCC) $(SOURCES) -o $(WEB_TARGET) $(EMFLAGS)
+	git clone --depth 1 --branch 5.5 https://github.com/raysan5/raylib.git /tmp/raylib-src 2>/dev/null || true
+	$(EMCC) $(SOURCES) $(RAYLIB_SOURCES) -o $(WEB_TARGET) $(EMFLAGS)
 
 web-run: web
 	python -m http.server 8080
