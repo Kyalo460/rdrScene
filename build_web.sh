@@ -2,6 +2,8 @@
 set -e
 
 PROJECT_ROOT=$(pwd)
+echo "Project root: $PROJECT_ROOT"
+ls -la shell.html
 
 # Clone raylib source
 git clone --depth 1 --branch 5.5 https://github.com/raysan5/raylib.git /tmp/raylib-src
@@ -15,6 +17,8 @@ source ./emsdk_env.sh
 
 # Build
 cd "$PROJECT_ROOT"
+echo "Building from: $(pwd)"
+ls -la shell.html
 /tmp/emsdk/upstream/emscripten/emcc \
   src/main.c src/world.c src/player.c src/enemy.c src/mission.c src/ui.c src/audio.c src/dialogue.c \
   /tmp/raylib-src/src/rcore.c /tmp/raylib-src/src/rshapes.c /tmp/raylib-src/src/rtextures.c \
