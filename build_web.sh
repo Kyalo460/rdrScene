@@ -3,6 +3,7 @@ set -e
 
 PROJECT_ROOT=$(pwd)
 echo "Project root: $PROJECT_ROOT"
+echo "shell.html exists: $(test -f shell.html && echo YES || echo NO)"
 ls -la shell.html
 
 # Clone raylib source
@@ -18,6 +19,7 @@ source ./emsdk_env.sh
 # Build
 cd "$PROJECT_ROOT"
 echo "Building from: $(pwd)"
+echo "shell.html exists: $(test -f shell.html && echo YES || echo NO)"
 ls -la shell.html
 /tmp/emsdk/upstream/emscripten/emcc \
   src/main.c src/world.c src/player.c src/enemy.c src/mission.c src/ui.c src/audio.c src/dialogue.c \
@@ -31,4 +33,4 @@ ls -la shell.html
   -s FORCE_FILESYSTEM=1 \
   -s EXPORTED_RUNTIME_METHODS='["ccall","cwrap"]' \
   -s EXPORTED_FUNCTIONS='["_main","_malloc","_free"]' \
-  --shell-file shell.html
+  --shell-file "$PROJECT_ROOT/shell.html"
