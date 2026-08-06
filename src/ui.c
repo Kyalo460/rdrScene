@@ -24,15 +24,8 @@ static void DrawTextureCentered(Texture2D texture, float x, float y, float scale
 }
 
 void UIInit(void) {
-    uiAssets.font = LoadFontEx("resources/fonts/Inter-Regular.ttf", 24, 0, 250);
-    uiAssets.fontBold = LoadFontEx("resources/fonts/Inter-Bold.ttf", 32, 0, 250);
-    
-    if (uiAssets.font.texture.id == 0) {
-        uiAssets.font = GetFontDefault();
-    }
-    if (uiAssets.fontBold.texture.id == 0) {
-        uiAssets.fontBold = GetFontDefault();
-    }
+    uiAssets.font = GetFontDefault();
+    uiAssets.fontBold = GetFontDefault();
 
     uiAssets.nairobiGold = (Color){255, 215, 0, 255};
     uiAssets.nairobiDark = (Color){15, 15, 20, 255};
