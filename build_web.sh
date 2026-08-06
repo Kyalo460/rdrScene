@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+PROJECT_ROOT=$(pwd)
+
 # Clone raylib source
 git clone --depth 1 --branch 5.5 https://github.com/raysan5/raylib.git /tmp/raylib-src
 
@@ -9,11 +11,10 @@ git clone https://github.com/emscripten-core/emsdk.git /tmp/emsdk
 cd /tmp/emsdk
 ./emsdk install latest
 ./emsdk activate latest
+source ./emsdk_env.sh
 
 # Build
-cd /tmp/emsdk
-source ./emsdk_env.sh
-cd $VERCEL_PROJECT_ROOT
+cd "$PROJECT_ROOT"
 /tmp/emsdk/upstream/emscripten/emcc \
   src/main.c src/world.c src/player.c src/enemy.c src/mission.c src/ui.c src/audio.c src/dialogue.c \
   /tmp/raylib-src/src/rcore.c /tmp/raylib-src/src/rshapes.c /tmp/raylib-src/src/rtextures.c \
