@@ -11,6 +11,9 @@ cd /tmp/emsdk
 ./emsdk activate latest
 
 # Build
+cd /tmp/emsdk
+source ./emsdk_env.sh
+cd $VERCEL_PROJECT_ROOT
 /tmp/emsdk/upstream/emscripten/emcc \
   src/main.c src/world.c src/player.c src/enemy.c src/mission.c src/ui.c src/audio.c src/dialogue.c \
   /tmp/raylib-src/src/rcore.c /tmp/raylib-src/src/rshapes.c /tmp/raylib-src/src/rtextures.c \
