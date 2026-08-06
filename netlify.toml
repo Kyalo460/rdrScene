@@ -1,5 +1,5 @@
 [build]
-  command = "git clone https://github.com/emscripten-core/emsdk.git /tmp/emsdk && cd /tmp/emsdk && ./emsdk install latest && ./emsdk activate latest && source ./emsdk_env.sh && cd $NETLIFY_REPO_DIR && make web"
+  command = "git clone https://github.com/emscripten-core/emsdk.git /tmp/emsdk && cd /tmp/emsdk && ./emsdk install latest && ./emsdk activate latest && /tmp/emsdk/upstream/emscripten/emcc src/main.c src/world.c src/player.c src/enemy.c src/mission.c src/ui.c src/audio.c src/dialogue.c -o nairobi_streets.html -std=c99 -Wall -Wextra -O2 -I./src -Isrc -s USE_GLFW=3 -s ASYNCIFY -s TOTAL_MEMORY=67108864 -s FORCE_FILESYSTEM=1 -s EXPORTED_RUNTIME_METHODS=['ccall','cwrap'] -s EXPORTED_FUNCTIONS=['_main','_malloc','_free'] --shell-file shell.html"
   publish = "."
 
 [functions]
