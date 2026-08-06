@@ -48,7 +48,7 @@ static const bool weapon_auto[WEAPON_COUNT] = {
 
 void PlayerInit(Game* game) {
     Vector2 spawn = WorldGetSpawnPoint(FACTION_PLAYER);
-    Entity* player = EntityCreate(game, ENTITY_PLAYER, spawn.x, spawn.y);
+    Entity* player = EntityCreate(game, ENTITY_PLAYER, spawn.x, spawn.y, 0.0f);
     if (player) {
         player->width = 32;
         player->height = 48;
@@ -300,7 +300,7 @@ void PlayerShoot(Game* game) {
 }
 
 Entity* EntityCreateBullet(Game* game, float x, float y, float dir_x, float dir_y, int damage, float speed, Entity* owner) {
-    Entity* bullet = EntityCreate(game, ENTITY_BULLET, x, y);
+    Entity* bullet = EntityCreate(game, ENTITY_BULLET, x, y, atan2f(dir_y, dir_x));
     if (bullet) {
         bullet->vel_x = dir_x * speed;
         bullet->vel_y = dir_y * speed;

@@ -14,6 +14,7 @@
 #define MAX_ENTITIES 1024
 #define MAX_BULLETS 512
 #define MAX_PARTICLES 1024
+#define PI 3.14159265358979323846f
 #define MAX_BUILDINGS 500
 #define MAX_PROPS 2000
 #define MAX_NAV_NODES 2000
@@ -54,6 +55,7 @@ typedef enum {
 } EntityType;
 
 typedef enum {
+    WEAPON_NONE = -1,
     WEAPON_FISTS = 0,
     WEAPON_KNIFE,
     WEAPON_PISTOL,
@@ -218,6 +220,7 @@ typedef struct {
     float game_time;
     int wave;
     int enemies_killed_this_wave;
+    int worldHeat;
     Texture2D textures[16];
     int texture_count;
 } Game;
@@ -400,11 +403,11 @@ void WorldDraw(void);
 Vector2 WorldGetSpawnPoint(Faction faction);
 bool WorldIsWalkable(Vector2 pos);
 
-void EnemyInit(void);
-void EnemyUpdate(float dt);
-void EnemyAI(Entity *e, float dt);
-void EnemySpawnWave(int wave);
-Entity* EntityCreateEnemy(Faction faction, float x, float y);
+void EnemyInit(Game* game);
+void EnemyUpdate(Game* game, float dt);
+void EnemyAI(Game* game, Entity *e, float dt);
+void EnemySpawnWave(Game* game, int wave);
+Entity* EntityCreateEnemy(Game* game, Faction faction, float x, float y);
 void EntityMoveToward(Entity *e, float targetX, float targetY, float speed, float dt);
 void EntityAttack(Entity *attacker, Entity *target);
 int EntityFindNearestTarget(Entity *e, Faction targetFaction, float maxRange);

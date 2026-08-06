@@ -224,7 +224,7 @@ void GameUpdate(Game* game) {
 
     WorldUpdate(game->dt);
     MissionUpdate(game->dt);
-    EnemyUpdate(game->dt);
+    EnemyUpdate(game, game->dt);
 
     if (game->player) {
         PlayerHUD hud = {
