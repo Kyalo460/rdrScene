@@ -114,7 +114,7 @@ void GameInit(Game* game) {
 
 void GameSpawnPlayer(Game* game) {
     Vector2 spawn = WorldGetSpawnPoint(FACTION_PLAYER);
-    Entity* player = EntityCreate(game, ENTITY_PLAYER, spawn.x, spawn.y);
+    Entity* player = EntityCreate(game, ENTITY_PLAYER, spawn.x, spawn.y, 0.0f);
     if (player) {
         player->width = 32;
         player->height = 48;
@@ -357,7 +357,7 @@ void GameClose(Game* game) {
     CloseWindow();
 }
 
-Entity* EntityCreate(Game* game, EntityType type, float x, float y) {
+Entity* EntityCreate(Game* game, EntityType type, float x, float y, float angle) {
     if (game->entity_count >= MAX_ENTITIES) return NULL;
 
     Entity* e = &game->entities[game->entity_count++];
@@ -366,6 +366,7 @@ Entity* EntityCreate(Game* game, EntityType type, float x, float y) {
     e->type = type;
     e->x = x;
     e->y = y;
+    e->angle = angle;
     e->active = true;
     return e;
 }

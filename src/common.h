@@ -142,7 +142,7 @@ typedef struct {
     float x, y;
 } Vec2;
 
-typedef struct {
+typedef struct Entity {
     int id;
     EntityType type;
     Faction faction;
@@ -378,7 +378,7 @@ void GameDraw(Game* game);
 void GameClose(Game* game);
 void GameHandleInput(Game* game);
 void GameSpawnPlayer(Game* game);
-Entity* EntityCreate(Game* game, EntityType type, float x, float y);
+Entity* EntityCreate(Game* game, EntityType type, float x, float y, float angle);
 void EntityDestroy(Game* game, Entity* e);
 void EntityUpdate(Game* game, Entity* e, float dt);
 void EntityDraw(Game* game, Entity* e);
@@ -388,6 +388,11 @@ void EntityTakeDamage(Game* game, Entity* target, int damage, Entity* attacker);
 Entity* EntityFindNearest(Game* game, Entity* from, EntityType target_type, float max_range);
 void WorldWrapEntity(Entity* e);
 void CameraFollowPlayer(Game* game);
+
+void PlayerInit(Game* game);
+void PlayerUpdate(Game* game, float dt);
+void PlayerShoot(Game* game);
+Entity* EntityCreateBullet(Game* game, float x, float y, float dir_x, float dir_y, int damage, float speed, Entity* owner);
 
 void WorldInit(uint32_t seed);
 void WorldUpdate(float dt);
