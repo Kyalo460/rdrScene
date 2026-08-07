@@ -10,36 +10,34 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: "pages-deploy"
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Setup Emscripten
-        uses: mymindstorm/setup-emsdk@v14
-        with:
-          version: 6.0.6
-      
-      - name: Build Web Version
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build WebAssembly (self-installs Emscripten)
         run: |
-          source "$EMSDK/emsdk_env.sh"
-          make web
-        shell: bash
+          cd nairobi_life
+          chmod +x build_web.sh
+          ./build_web.sh
 
       - name: Stage GitHub Pages site
         run: |
           mkdir -p _site
           cp nairobi_life.html nairobi_life.js nairobi_life.wasm _site/
           cp nairobi_life/index.html _site/index.html
-          # Serve the game at the site root too.
           touch _site/.nojekyll
 
-      - name: Upload Artifact
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
-          name: github-pages
 
   deploy:
     needs: build
