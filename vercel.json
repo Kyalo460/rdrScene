@@ -1,11 +1,15 @@
 {
-  "buildCommand": "chmod +x build_web.sh && ./build_web.sh",
+  "buildCommand": "cd nairobi_life && chmod +x build_web.sh && ./build_web.sh",
   "outputDirectory": ".",
   "framework": null,
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/streets",
       "destination": "/nairobi_streets.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/nairobi_life.html"
     }
   ],
   "headers": [

@@ -1,0 +1,31 @@
+name: Build Nairobi Life (Web/WASM)
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Emscripten
+        run: |
+          git clone https://github.com/emscripten-core/emsdk.git
+          cd emsdk
+          ./emsdk install 6.0.6
+          ./emsdk activate 6.0.6
+      - name: Build WASM
+        run: |
+          source emsdk/emsdk_env.sh
+          cd nairobi_life
+          chmod +x build_web.sh
+          ./build_web.sh
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nairobi-life-web
+          path: |
+            nairobi_life.html
+            nairobi_life.js
+            nairobi_life.wasm
+          if-no-files-found: error

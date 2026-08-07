@@ -1,0 +1,19 @@
+Cloning into '/tmp/raylib-src'...
+Note: switching to 'c1ab645ca298a2801097931d1079b10ff7eb9df8'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+Updating files:  61% (631/1031)Updating files:  62% (640/1031)Updating files:  63% (650/1031)Updating files:  64% (660/1031)Updating files:  65% (671/1031)Updating files:  66% (681/1031)Updating files:  67% (691/1031)Updating files:  68% (702/1031)Updating files:  69% (712/1031)Updating files:  70% (722/1031)Updating files:  71% (733/1031)Updating files:  72% (743/1031)Updating files:  73% (753/1031)Updating files:  74% (763/1031)Updating files:  75% (774/1031)Updating files:  76% (784/1031)Updating files:  77% (794/1031)Updating files:  78% (805/1031)Updating files:  79% (815/1031)Updating files:  80% (825/1031)Updating files:  81% (836/1031)Updating files:  82% (846/1031)Updating files:  83% (856/1031)Updating files:  84% (867/1031)Updating files:  85% (877/1031)Updating files:  86% (887/1031)Updating files:  87% (897/1031)Updating files:  88% (908/1031)Updating files:  89% (918/1031)Updating files:  90% (928/1031)Updating files:  91% (939/1031)Updating files:  92% (949/1031)Updating files:  93% (959/1031)Updating files:  94% (970/1031)Updating files:  95% (980/1031)Updating files:  96% (990/1031)Updating files:  97% (1001/1031)Updating files:  98% (1011/1031)Updating files:  99% (1021/1031)Updating files: 100% (1031/1031)Updating files: 100% (1031/1031), done.

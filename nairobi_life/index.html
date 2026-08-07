@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nairobi Life</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            background: linear-gradient(160deg, #11151a 0%, #1c232b 60%, #2a2118 100%);
+            color: #e8e6e0;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; padding: 24px;
+        }
+        .title { color: #f4a23b; font-size: 44px; letter-spacing: 3px; text-shadow: 0 0 18px rgba(244,162,59,0.35); }
+        .tag { color: #aab0b6; margin: 10px 0 26px; font-size: 16px; max-width: 620px; line-height: 1.6; }
+        .btn {
+            display: inline-block; text-decoration: none;
+            background: #f4a23b; color: #1a1208; font-weight: 700; font-size: 18px;
+            padding: 14px 34px; border-radius: 8px; letter-spacing: 1px;
+            box-shadow: 0 6px 24px rgba(244,162,59,0.3); transition: transform .12s ease;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .alt { margin-top: 18px; color: #8b9197; font-size: 13px; }
+        .alt a { color: #c9ccd1; }
+        .features { margin-top: 34px; display: flex; gap: 18px; flex-wrap: wrap; justify-content: center; max-width: 760px; }
+        .card { background: rgba(20,24,28,0.7); border: 1px solid #2a2f36; border-radius: 10px; padding: 16px 18px; width: 220px; }
+        .card h3 { color: #f4a23b; font-size: 15px; margin-bottom: 6px; }
+        .card p { color: #aab0b6; font-size: 13px; line-height: 1.5; }
+    </style>
+</head>
+<body>
+    <div class="title">NAIROBI LIFE</div>
+    <div class="tag">
+        A realistic street-life survival sim set in Nairobi, Kenya. Real weather (two rainy seasons,
+        cool grey Julys), real KSh prices, real hunger, rent and police. Stay alive.
+    </div>
+    <a class="btn" href="nairobi_life.html">PLAY IN BROWSER</a>
+    <div class="alt">Native build? <a href="nairobi_life.exe">Download Windows .exe</a></div>
+
+    <div class="features">
+        <div class="card"><h3>Real Climate</h3><p>Long rains (Mar-May), short rains (Oct-Dec), cool dry June-September. Convective afternoon downpours, short equatorial twilight.</p></div>
+        <div class="card"><h3>Real Economy</h3><p>Earn as a hawker, mjengo casual labourer, scrap collector or handcart pusher. Pay rent, food, water, clinic in KSh.</p></div>
+        <div class="card"><h3>Living City</h3><p>512 NPCs and matatus that rush with traffic and run for cover when it rains. Askaris, thugs and night in Kibera.</p></div>
+    </div>
+</body>
+</html>

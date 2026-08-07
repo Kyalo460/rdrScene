@@ -1,13 +1,18 @@
 [build]
-  command = "chmod +x build_web.sh && ./build_web.sh"
+  command = "cd nairobi_life && chmod +x build_web.sh && ./build_web.sh"
   publish = "."
 
 [functions]
   node_bundler = "esbuild"
 
 [[redirects]]
-  from = "/*"
+  from = "/streets"
   to = "/nairobi_streets.html"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/nairobi_life.html"
   status = 200
 
 [headers]

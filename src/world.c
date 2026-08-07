@@ -1,74 +1,18 @@
+#include "common.h"
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdbool.h>
 #include <math.h>
 
-#define WORLD_WIDTH 4000
-#define WORLD_HEIGHT 4000
-#define ROAD_GRID_SIZE 400
-#define MAX_BUILDINGS 500
-#define MAX_PROPS 2000
-#define MAX_NAV_NODES 2000
-
-typedef enum {
-    FACTION_PLAYER,
-    FACTION_CIVILIAN,
-    FACTION_GANG,
-    FACTION_POLICE
-} Faction;
-
-typedef enum {
-    BUILDING_SLUM,
-    BUILDING_ESTATE,
-    BUILDING_CBD
-} BuildingType;
-
-typedef enum {
-    PROP_MATATU,
-    PROP_KIOSK,
-    PROP_BARRIER,
-    PROP_STREETLIGHT,
-    PROP_TRASH
-} PropType;
-
-typedef struct {
-    float x, y;
-} Vector2;
-
-typedef struct {
-    Vector2 pos;
-    Vector2 size;
-    BuildingType type;
-    uint32_t color;
-} Building;
-
-typedef struct {
-    Vector2 pos;
-    PropType type;
-    uint32_t color;
-} Prop;
-
-typedef struct {
-    Vector2 pos;
-    bool walkable;
-    int connections[4];
-    int connection_count;
-} NavNode;
-
-typedef struct {
-    int x, y;
-    bool horizontal;
-} RoadSegment;
-
 static uint32_t g_seed = 12345;
-static Building g_buildings[MAX_BUILDINGS];
-static int g_building_count = 0;
-static Prop g_props[MAX_PROPS];
-static int g_prop_count = 0;
-static NavNode g_nav_nodes[MAX_NAV_NODES];
-static int g_nav_count = 0;
-static RoadSegment g_roads[200];
-static int g_road_count = 0;
+Building g_buildings[MAX_BUILDINGS];
+int g_building_count;
+Prop g_props[MAX_PROPS];
+int g_prop_count;
+NavNode g_nav_nodes[MAX_NAV_NODES];
+int g_nav_count;
+RoadSegment g_roads[200];
+int g_road_count;
 static bool g_initialized = false;
 
 static uint32_t rand_next(void) {
@@ -255,7 +199,7 @@ Vector2 WorldGetSpawnPoint(Faction faction) {
             spawn.y = gy * ROAD_GRID_SIZE + rand_int(20, ROAD_GRID_SIZE - 20);
             break;
         }
-        case FACTION_GANG: {
+        case FACTION_GANG_MUNGIKI: {
             int grid_w = WORLD_WIDTH / ROAD_GRID_SIZE;
             int gx = rand_int(0, grid_w / 3);
             int gy = rand_int(0, grid_w / 3);

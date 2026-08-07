@@ -1,0 +1,47 @@
+=== Nairobi Life simulation verification ===
+
+[1] Sunrise/sunset must barely move near the equator
+    January sunrise  6.61  sunset 18.79  daylen 12.19 h
+    February sunrise  6.71  sunset 18.87  daylen 12.15 h
+    March sunrise  6.65  sunset 18.77  daylen 12.12 h
+    April sunrise  6.51  sunset 18.59  daylen 12.08 h
+    May  sunrise  6.45  sunset 18.51  daylen 12.06 h
+    June sunrise  6.53  sunset 18.57  daylen 12.05 h
+    July sunrise  6.61  sunset 18.67  daylen 12.05 h
+    August sunrise  6.58  sunset 18.65  daylen 12.07 h
+    September sunrise  6.40  sunset 18.50  daylen 12.10 h
+    October sunrise  6.23  sunset 18.37  daylen 12.14 h
+    November sunrise  6.21  sunset 18.39  daylen 12.18 h
+    December sunrise  6.38  sunset 18.58  daylen 12.19 h
+
+[2] Annual climate: simulate every day of 2026
+    Month  rain_mm   Tmin   Tmax
+    January      3.7   12.6   26.2
+    February      7.6   13.4   27.2
+    March     45.1   13.3   25.0
+    April     52.9   13.4   23.8
+    May       40.0   12.1   22.1
+    June      14.8   11.7   20.6
+    July      15.1   11.0   19.7
+    August     16.3   11.2   20.4
+    September     16.3   11.6   22.6
+    October     14.0   13.3   24.3
+    November     17.0   12.0   22.8
+    December     24.2   11.9   22.4
+    Annual total rainfall: 267 mm
+  FAIL: annual rainfall plausible (550-1400mm)
+    Long rains (MAM)=138 mm vs dry (JA)=31 mm
+
+[3] Season mapping
+    Apr=Long Rains  Jul=Cool Dry  Nov=Short Rains
+
+[4] World generation and NPCs
+    buildings=430 props=2105 roads=49 npcs=512 vehicles=160 jobs=9
+    Kibera      169 samples
+    CBD         49 samples
+    Industrial Area 117 samples
+    Estate      208 samples
+    Market      39 samples
+    Roadside    259 samples
+
+[5] Ten simulated days of survival (no input, idle player)
