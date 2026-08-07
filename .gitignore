@@ -1,20 +1,37 @@
+# Build intermediates
 *.o
 *.obj
-*.exe
 *.out
 *.pdb
+*.swo
+*.swp
+build/
+nairobi_life/build/
+
+# Local logs / temp
 *.log
-.DS_Store
 *.tmp
 *.cache
+.DS_Store
 .vscode/
 .idea/
-*.swp
-*.swo
-src/*.o
+
+# Toolchains (huge, not source)
 emsdk/
 raylib/
 raylib.zip
+
+# Old nairobi_streets game assets (large, not part of this game)
+nairobi_streets-windows.zip
+nairobi_streets.exe
 nairobi_streets.html
 nairobi_streets.js
 nairobi_streets.wasm
+dist/
+
+# Stray / editor files
+gggg.sh
+*.ps1
+
+# NOTE: nairobi_life.html / .js / .wasm are the DEPLOY OUTPUTS and are
+# intentionally tracked (they are served by GitHub Pages / Netlify / Vercel).

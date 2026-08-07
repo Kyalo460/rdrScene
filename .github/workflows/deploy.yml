@@ -19,18 +19,26 @@ jobs:
       - name: Setup Emscripten
         uses: mymindstorm/setup-emsdk@v14
         with:
-          version: latest
+          version: 6.0.6
       
       - name: Build Web Version
         run: |
           source "$EMSDK/emsdk_env.sh"
           make web
         shell: bash
-      
+
+      - name: Stage GitHub Pages site
+        run: |
+          mkdir -p _site
+          cp nairobi_life.html nairobi_life.js nairobi_life.wasm _site/
+          cp nairobi_life/index.html _site/index.html
+          # Serve the game at the site root too.
+          touch _site/.nojekyll
+
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
           name: github-pages
 
   deploy:
